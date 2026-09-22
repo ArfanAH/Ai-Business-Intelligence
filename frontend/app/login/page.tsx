@@ -24,7 +24,7 @@ export default function LoginPage() {
       formData.append("password", password);
 
       const response = await fetch(
-        "http://127.0.0.1:8000/api/login",
+        "https://ai-business-intelligence-1-pwvg.onrender.com/api/login",
         {
           method: "POST",
           headers: {
