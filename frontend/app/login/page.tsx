@@ -8,6 +8,7 @@ export default function LoginPage() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -25,7 +26,6 @@ export default function LoginPage() {
 
       const response = await fetch(
         "https://ai-business-intelligence-1-pwvg.onrender.com/api/login",
-        
         {
           method: "POST",
           headers: {
@@ -52,6 +52,12 @@ export default function LoginPage() {
     } finally {
       setLoading(false);
     }
+  }
+
+  function useDemoLogin() {
+    setUsername("admin");
+    setPassword("admin123");
+    setError("");
   }
 
   return (
@@ -88,14 +94,25 @@ export default function LoginPage() {
               Password
             </label>
 
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter password"
-              className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-blue-500"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter password"
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-12 text-gray-900 outline-none focus:border-blue-500"
+                required
+              />
+
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? "🙈" : "👁️"}
+              </button>
+            </div>
           </div>
 
           {error && (
@@ -112,7 +129,31 @@ export default function LoginPage() {
             {loading ? "Signing in..." : "Sign In"}
           </button>
         </form>
+
+        <div className="mt-6 rounded-lg border border-blue-200 bg-blue-50 p-4">
+          <h2 className="text-sm font-semibold text-blue-900">
+            Demo Login
+          </h2>
+
+          <div className="mt-2 text-sm text-blue-800">
+            <p>
+              <span className="font-medium">Username:</span> admin
+            </p>
+            <p>
+              <span className="font-medium">Password:</span> admin123
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={useDemoLogin}
+            className="mt-3 w-full rounded-lg border border-blue-300 bg-white px-4 py-2 text-sm font-medium text-blue-700 transition hover:bg-blue-100"
+          >
+            Use Demo Credentials
+          </button>
+        </div>
       </div>
     </main>
   );
 }
+

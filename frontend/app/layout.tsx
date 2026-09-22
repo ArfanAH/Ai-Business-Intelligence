@@ -21,7 +21,7 @@ export default function RootLayout({
 
           <footer className="border-t border-gray-200 bg-white py-5 text-center">
             <p className="text-sm text-gray-800">
-              © 2026 AI Business Intelligence
+              © 2026
             </p>
 
             <p className="mt-1 text-sm font-medium text-gray-900">
