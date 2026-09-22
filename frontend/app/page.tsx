@@ -31,7 +31,7 @@ export default function Home() {
   >([]);
 
   useEffect(() => {
-    const token = localStorage.getItem("access_token");
+    const token = sessionStorage.getItem("access_token");
 
     if (!token) {
       window.location.href = "/login";
@@ -39,14 +39,14 @@ export default function Home() {
   }, []);
 
   function handleLogout() {
-    localStorage.removeItem("access_token");
+    sessionStorage.removeItem("access_token");
     window.location.href = "/login";
   }
 
   const askQuestion = async () => {
     if (!question.trim()) return;
 
-    const token = localStorage.getItem("access_token");
+    const token = sessionStorage.getItem("access_token");
 
     // If token is missing, go back to login
     if (!token) {
@@ -77,7 +77,7 @@ export default function Home() {
 
       // If token expired or invalid
       if (response.status === 401) {
-        localStorage.removeItem("access_token");
+        sessionStorage.removeItem("access_token");
         window.location.href = "/login";
         return;
       }

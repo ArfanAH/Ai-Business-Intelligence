@@ -25,6 +25,7 @@ export default function LoginPage() {
 
       const response = await fetch(
         "https://ai-business-intelligence-1-pwvg.onrender.com/api/login",
+        
         {
           method: "POST",
           headers: {
@@ -42,7 +43,7 @@ export default function LoginPage() {
       }
 
       // Save JWT token
-      localStorage.setItem("access_token", data.access_token);
+      sessionStorage.setItem("access_token", data.access_token);
 
       // Go to dashboard
       router.push("/");
