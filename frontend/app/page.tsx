@@ -59,7 +59,7 @@ export default function Home() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/api/ask",
+        "https://ai-business-intelligence-1-pwvg.onrender.com/api/ask",
         {
           method: "POST",
           headers: {
